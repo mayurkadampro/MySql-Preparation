@@ -1,6 +1,26 @@
+/*
+SQL Data Types
+
+Each column in a database table is required to have a name and a data type.
+
+An SQL developer must decide what type of data that will be stored inside each column when creating a table. 
+The data type is a guideline for SQL to understand what type of data is expected inside of each column, 
+and it also identifies how SQL will interact with the stored data.
+
+MySQL Data Types (Version 8.0)
+
+In MySQL there are three main data types: string, numeric, and date and time.
+
+*/
 
 
-FOR DATABASE CREATION
+
+-- comment in sql
+Single line comments start with --
+Multi-line comments start with /* and end with */.
+
+
+-- FOR DATABASE CREATION
 CREATE DATABASE xyz;
 
 SHOW DATABASES;
@@ -20,7 +40,7 @@ SHOW DATABASES;
 USE newformation;
 Database changed
 
-SHOW TABLES; //after creation of persons table by query.
+SHOW TABLES; -- after creation of persons table by query.
 +------------------------+
 | Tables_in_newformation |
 +------------------------+
@@ -297,7 +317,7 @@ select * from marks where score >= 22;
 +----+-------------------------------+-------+-----+
 21 rows in set (0.00 sec)
 
- select * from students where state = "UP"; //Note == not work in the sql 
+ select * from students where state = "UP";  -- Note == not work in the sql 
 +----+------------------+-----------+-------+---------+
 | id | name             | city      | state | pincode |
 +----+------------------+-----------+-------+---------+
@@ -811,7 +831,7 @@ SELECT * FROM courses WHERE course_name LIKE "J_v %";
 Empty set (0.00 sec)
 
 
-SELECT * FROM marks WHERE course_name LIKE "C_____e_ %"; // we can also use underscore more than once
+SELECT * FROM marks WHERE course_name LIKE "C_____e_ %"; -- we can also use underscore more than once
 +----+------------------------------+-------+-----+
 | id | course_name                  | score | sid |
 +----+------------------------------+-------+-----+
@@ -1285,7 +1305,10 @@ UPDATE marks SET course_name = "java from scarch" WHERE sid = 38;
 | 25 | SQLite Tutorial               |    69 |  60 |
 +----+-------------------------------+-------+-----+
 
--- By Normal Way
+
+/*--------------------- JOIN OPERATION ---------------------*/
+
+-- By Normal Way and this fully qualified query is use in JOIN OPERATION.
 SELECT students.id, marks.sid, students.name, marks.course_name, marks.score FROM marks, students 
 WHERE students.id = marks.sid;
 +----+-----+------------------+-------------------------------+-------+
@@ -1319,7 +1342,7 @@ WHERE students.id = marks.sid;
 +----+-----+------------------+-------------------------------+-------+
 25 rows in set (0.01 sec)
 
-//now do it by Join Operations.
+-- now do it by Join Operations.
 SELECT students.id, marks.sid, students.name, marks.course_name, marks.score FROM marks INNER JOIN students ON students.id = marks.sid;
 +----+-----+------------------+-------------------------------+-------+
 | id | sid | name             | course_name                   | score |

@@ -545,7 +545,8 @@ SELECT * FROM courses where fees BETWEEN 5000 AND 15000;
 +----+-----------------------------+-----------------+-------+
 13 rows in set (0.00 sec)
 
-SELECT * FROM students WHERE state IN('UP','WB');
+// IN use when you want to retrive data on the basis of present 
+SELECT * FROM students WHERE state IN('UP','WB'); // you can also change or add or remove more parameter
 +----+----------------------+-----------+-------+---------+
 | id | name                 | city      | state | pincode |
 +----+----------------------+-----------+-------+---------+
@@ -576,7 +577,8 @@ SELECT * FROM students WHERE state IN('UP','WB');
 +----+----------------------+-----------+-------+---------+
 24 rows in set (0.00 sec)
 
-SELECT * FROM students WHERE state NOT IN('UP','WB');
+// same as IN but it shows not present data
+SELECT * FROM students WHERE state NOT IN('UP','WB'); // you can also change or add or remove more parameter
 +----+------------------+------------+-------+---------+
 | id | name             | city       | state | pincode |
 +----+------------------+------------+-------+---------+

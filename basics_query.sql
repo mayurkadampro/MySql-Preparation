@@ -89,6 +89,9 @@ SELECT * FROM persons;
 DROP TABLE persons;
 Query OK, 0 rows affected (0.01 sec)
 
+DROP DATABASE xyz;
+Query OK, 0 rows affected (0.00 sec)
+
 
 /*---------------------------- gangulytech.sql --------------------------------*/
 
@@ -1305,10 +1308,237 @@ UPDATE marks SET course_name = "java from scarch" WHERE sid = 38;
 | 25 | SQLite Tutorial               |    69 |  60 |
 +----+-------------------------------+-------+-----+
 
+/*------------ Look for DELETE operations -------------*/
+
+SELECT * FROM courses;
++----+-------------------------------+-----------------+-------+
+| id | course_name                   | instructor_name | fees  |
++----+-------------------------------+-----------------+-------+
+|  1 | MySQL Database                | Sandeep Ganguly |  4500 |
+|  2 | PHP Development               | Dolly Singh     |  1500 |
+|  3 | Java Complete Tutorial        | Ramesh Yadav    |  7500 |
+|  4 | Swing GUI In Depth            | Guddu Sharma    | 15000 |
+|  5 | Computer Vision Using Python  | Narendra Murthy | 25000 |
+|  6 | AI In Real World Using Python | Satya Kundu     | 45000 |
+|  7 | 2D Games Using PyGame         | Sandeep Ganguly | 18000 |
+|  8 | GIMP Photo Editing            | Rachna Mishra   |  5000 |
+|  9 | HTML                          | Chatur Singh    |  1000 |
+| 10 | CSS3                          | pinky singh     |  1500 |
+| 11 | Amazon Cloud AWS              | Ruchi Singhania | 75000 |
+| 12 | Hadoop Big Data               | Ankita Ganguly  | 95000 |
+| 13 | Natural Language Processing   | Sandeep Ganguly | 45999 |
+| 14 | The C Ninja                   | Pradeep Gurung  |  3599 |
+| 15 | Java Database Connectivity    | Ratan Tata      |  6599 |
+| 16 | Dynamic Website Development   | Girish Patel    |  8599 |
+| 17 | Android App Development       | Rishi Khanna    | 17999 |
+| 18 | IOS Developer                 | Umesh Verma     | 25000 |
+| 19 | Algorithms In Depth           | Arjun Thapa     |  9999 |
+| 20 | Data Structure In Depth       | Ashok Kalia     | 15000 |
+| 21 | JQuery Ninja                  | James Guido     |  6500 |
+| 22 | Twitter Bootstrap             | Mitali Ghosh    | 14999 |
+| 23 | Codeigniter                   | Pawan Kumar     |  7599 |
+| 24 | Struts Framework              | Umesh Verma     |  7500 |
+| 25 | CakePHP                       | Parvez Khan     | 60000 |
+| 26 | Machine Learning              | Faisal Qureshi  | 45000 |
+| 27 | Computer Networks             | Saleem Khan     | 12599 |
+| 28 | C++ STL Library Tutorial      | Kareem Sheikh   | 25000 |
+| 29 | Kali Linux                    | Jitan Majhi     |  4500 |
+| 30 | SQLite Tutorial               | Nitish Kumar    |  6500 |
++----+-------------------------------+-----------------+-------+
+30 rows in set (0.00 sec)
+
+DELETE FROM courses WHERE id = 1;
+Query OK, 1 row affected (0.01 sec)
+
+SELECT * FROM courses;
++----+-------------------------------+-----------------+-------+
+| id | course_name                   | instructor_name | fees  |
++----+-------------------------------+-----------------+-------+
+|  2 | PHP Development               | Dolly Singh     |  1500 |
+|  3 | Java Complete Tutorial        | Ramesh Yadav    |  7500 |
+|  4 | Swing GUI In Depth            | Guddu Sharma    | 15000 |
+|  5 | Computer Vision Using Python  | Narendra Murthy | 25000 |
+|  6 | AI In Real World Using Python | Satya Kundu     | 45000 |
+|  7 | 2D Games Using PyGame         | Sandeep Ganguly | 18000 |
+|  8 | GIMP Photo Editing            | Rachna Mishra   |  5000 |
+|  9 | HTML                          | Chatur Singh    |  1000 |
+| 10 | CSS3                          | pinky singh     |  1500 |
+| 11 | Amazon Cloud AWS              | Ruchi Singhania | 75000 |
+| 12 | Hadoop Big Data               | Ankita Ganguly  | 95000 |
+| 13 | Natural Language Processing   | Sandeep Ganguly | 45999 |
+| 14 | The C Ninja                   | Pradeep Gurung  |  3599 |
+| 15 | Java Database Connectivity    | Ratan Tata      |  6599 |
+| 16 | Dynamic Website Development   | Girish Patel    |  8599 |
+| 17 | Android App Development       | Rishi Khanna    | 17999 |
+| 18 | IOS Developer                 | Umesh Verma     | 25000 |
+| 19 | Algorithms In Depth           | Arjun Thapa     |  9999 |
+| 20 | Data Structure In Depth       | Ashok Kalia     | 15000 |
+| 21 | JQuery Ninja                  | James Guido     |  6500 |
+| 22 | Twitter Bootstrap             | Mitali Ghosh    | 14999 |
+| 23 | Codeigniter                   | Pawan Kumar     |  7599 |
+| 24 | Struts Framework              | Umesh Verma     |  7500 |
+| 25 | CakePHP                       | Parvez Khan     | 60000 |
+| 26 | Machine Learning              | Faisal Qureshi  | 45000 |
+| 27 | Computer Networks             | Saleem Khan     | 12599 |
+| 28 | C++ STL Library Tutorial      | Kareem Sheikh   | 25000 |
+| 29 | Kali Linux                    | Jitan Majhi     |  4500 |
+| 30 | SQLite Tutorial               | Nitish Kumar    |  6500 |
++----+-------------------------------+-----------------+-------+
+29 rows in set (0.00 sec)
+
+-- NOTE - WHERE CLAUSE IS NECESSARY IF ITS NOT PROVIDED THEN IT DELETE ALL DATA FROM TABLE;
+DELETE FROM courses;
+Query OK, 29 rows affected (0.01 sec)
+
+SELECT * FROM courses;
+Empty set (0.00 sec)
+
+/*--------------------- ALTER OPERATION ---------------------*/
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | java from scarch              |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
+
+ALTER TABLE marks ADD grade varchar(1) NOT NULL;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [gangulytech]> SELECT * FROM marks;
++----+-------------------------------+-------+-----+-------+
+| id | course_name                   | score | sid | grade |
++----+-------------------------------+-------+-----+-------+
+|  1 | java from scarch              |    14 |  38 |       |
+|  2 | AI In Real World Using Python |    99 |  51 |       |
+|  3 | GIMP Photo Editing            |    51 |  29 |       |
+|  4 | SQLite Tutorial               |    57 |  13 |       |
+|  5 | Swing GUI In Depth            |    31 |  34 |       |
+|  6 | CSS3                          |    83 |  36 |       |
+|  7 | Codeigniter                   |    22 |  39 |       |
+|  8 | 2D Games Using PyGame         |    60 |  37 |       |
+|  9 | Data Structure In Depth       |    31 |  32 |       |
+| 10 | Amazon Cloud AWS              |    76 |  12 |       |
+| 11 | Amazon Cloud AWS              |    86 |  27 |       |
+| 12 | Computer Networks             |     2 |  34 |       |
+| 13 | Swing GUI In Depth            |    52 |   1 |       |
+| 14 | Dynamic Website Development   |    52 |   3 |       |
+| 15 | CakePHP                       |     2 |  27 |       |
+| 16 | Natural Language Processing   |    55 |   6 |       |
+| 17 | HTML                          |    68 |   6 |       |
+| 18 | Computer Vision Using Python  |    72 |  47 |       |
+| 19 | Computer Vision Using Python  |    58 |  24 |       |
+| 20 | Data Structure In Depth       |    70 |  14 |       |
+| 21 | Kali Linux                    |    76 |  18 |       |
+| 22 | Java Complete Tutorial        |    67 |  32 |       |
+| 23 | Java Database Connectivity    |     8 |  25 |       |
+| 24 | The C Ninja                   |    39 |  10 |       |
+| 25 | SQLite Tutorial               |    69 |  60 |       |
++----+-------------------------------+-------+-----+-------+
+25 rows in set (0.00 sec)
+
+ALTER TABLE marks MODIFY grade TEXT;
+Query OK, 25 rows affected (0.07 sec)
+Records: 25  Duplicates: 0  Warnings: 0
+
+MariaDB [gangulytech]> SELECT * FROM marks;
++----+-------------------------------+-------+-----+-------+
+| id | course_name                   | score | sid | grade |
++----+-------------------------------+-------+-----+-------+
+|  1 | java from scarch              |    14 |  38 |       |
+|  2 | AI In Real World Using Python |    99 |  51 |       |
+|  3 | GIMP Photo Editing            |    51 |  29 |       |
+|  4 | SQLite Tutorial               |    57 |  13 |       |
+|  5 | Swing GUI In Depth            |    31 |  34 |       |
+|  6 | CSS3                          |    83 |  36 |       |
+|  7 | Codeigniter                   |    22 |  39 |       |
+|  8 | 2D Games Using PyGame         |    60 |  37 |       |
+|  9 | Data Structure In Depth       |    31 |  32 |       |
+| 10 | Amazon Cloud AWS              |    76 |  12 |       |
+| 11 | Amazon Cloud AWS              |    86 |  27 |       |
+| 12 | Computer Networks             |     2 |  34 |       |
+| 13 | Swing GUI In Depth            |    52 |   1 |       |
+| 14 | Dynamic Website Development   |    52 |   3 |       |
+| 15 | CakePHP                       |     2 |  27 |       |
+| 16 | Natural Language Processing   |    55 |   6 |       |
+| 17 | HTML                          |    68 |   6 |       |
+| 18 | Computer Vision Using Python  |    72 |  47 |       |
+| 19 | Computer Vision Using Python  |    58 |  24 |       |
+| 20 | Data Structure In Depth       |    70 |  14 |       |
+| 21 | Kali Linux                    |    76 |  18 |       |
+| 22 | Java Complete Tutorial        |    67 |  32 |       |
+| 23 | Java Database Connectivity    |     8 |  25 |       |
+| 24 | The C Ninja                   |    39 |  10 |       |
+| 25 | SQLite Tutorial               |    69 |  60 |       |
++----+-------------------------------+-------+-----+-------+
+25 rows in set (0.00 sec)
+
+ALTER TABLE marks DROP grade;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [gangulytech]> SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | java from scarch              |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
 
 /*--------------------- JOIN OPERATION ---------------------*/
 
--- By Normal Way and this fully qualified query is use in JOIN OPERATION.
+-- NOTE - AND YOU CAN ALSO JOIN THREE AND MORE NOT JUST A TWO TABLES.
+-- By Normal Way you can also JOIN THE MORE TABLES And this fully qualified query is use in JOIN OPERATION.
 SELECT students.id, marks.sid, students.name, marks.course_name, marks.score FROM marks, students 
 WHERE students.id = marks.sid;
 +----+-----+------------------+-------------------------------+-------+
@@ -1375,7 +1605,7 @@ SELECT students.id, marks.sid, students.name, marks.course_name, marks.score FRO
 +----+-----+------------------+-------------------------------+-------+
 25 rows in set (0.00 sec)
 
-//LEFT OUTER JOIN
+-- LEFT OUTER JOIN 
 SELECT courses.id, marks.sid, courses.course_name, marks.course_name, marks.score FROM marks LEFT OUTER JOIN courses ON courses.id = marks.sid;
 +------+-----+-------------------------------+-------------------------------+-------+
 | id   | sid | course_name                   | course_name                   | score |

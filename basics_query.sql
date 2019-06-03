@@ -1,3 +1,7 @@
+FOR DATABASE CREATION
+CREATE DATABASE xyz;
+
+
 SHOW DATABASES;
 +--------------------+
 | Database           |
@@ -9,6 +13,7 @@ SHOW DATABASES;
 | performance_schema |
 | phpmyadmin         |
 | test               |
+| xyz                |
 +--------------------+
 
 USE newformation;

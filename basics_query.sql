@@ -1,3 +1,5 @@
+
+
 FOR DATABASE CREATION
 CREATE DATABASE xyz;
 
@@ -68,9 +70,9 @@ DROP TABLE persons;
 Query OK, 0 rows affected (0.01 sec)
 
 
-<---------------------------- gangulytech.sql -------------------------------->
+/*---------------------------- gangulytech.sql --------------------------------*/
 
-show databases;
+SHOW DATABASES;
 +--------------------+
 | Database           |
 +--------------------+
@@ -85,7 +87,7 @@ show databases;
 +--------------------+
 8 rows in set (0.02 sec)
 
-use gangulytech;
+USE gangulytech;
 Database changed
 
 show tables;
@@ -523,8 +525,8 @@ SELECT * FROM courses;
 +----+-------------------------------+-----------------+-------+
 30 rows in set (0.01 sec)
 
-// use BETWEEN when you want to retrive data in range
-// you can also write query SELECT * FROM courses WHERE fees > 5000 AND fees < 15000;
+-- use BETWEEN when you want to retrive data in range
+-- you can also write query SELECT * FROM courses WHERE fees > 5000 AND fees < 15000;
 SELECT * FROM courses where fees BETWEEN 5000 AND 15000; 
 +----+-----------------------------+-----------------+-------+
 | id | course_name                 | instructor_name | fees  |
@@ -545,8 +547,8 @@ SELECT * FROM courses where fees BETWEEN 5000 AND 15000;
 +----+-----------------------------+-----------------+-------+
 13 rows in set (0.00 sec)
 
-// IN use when you want to retrive data on the basis of present 
-SELECT * FROM students WHERE state IN('UP','WB'); // you can also change or add or remove more parameter
+-- IN use when you want to retrive data on the basis of present 
+SELECT * FROM students WHERE state IN('UP','WB'); -- you can also change or add or remove more parameter
 +----+----------------------+-----------+-------+---------+
 | id | name                 | city      | state | pincode |
 +----+----------------------+-----------+-------+---------+
@@ -577,8 +579,8 @@ SELECT * FROM students WHERE state IN('UP','WB'); // you can also change or add 
 +----+----------------------+-----------+-------+---------+
 24 rows in set (0.00 sec)
 
-// same as IN but it shows not present data
-SELECT * FROM students WHERE state NOT IN('UP','WB'); // you can also change or add or remove more parameter
+-- same as IN but it shows not present data
+SELECT * FROM students WHERE state NOT IN('UP','WB'); -- you can also change or add or remove more parameter
 +----+------------------+------------+-------+---------+
 | id | name             | city       | state | pincode |
 +----+------------------+------------+-------+---------+
@@ -621,6 +623,8 @@ SELECT * FROM students WHERE state NOT IN('UP','WB'); // you can also change or 
 +----+------------------+------------+-------+---------+
 36 rows in set (0.00 sec)
 
+-- order by basically used for sort data in asecding or desending order
+-- default order is ascesding
 SELECT * FROM courses ORDER BY fees ASC;
 +----+-------------------------------+-----------------+-------+
 | id | course_name                   | instructor_name | fees  |
@@ -695,7 +699,7 @@ SELECT * FROM courses ORDER BY fees DESC;
 +----+-------------------------------+-----------------+-------+
 30 rows in set (0.00 sec)
 
- DESC courses; //its descibe the table;
+ DESC courses; --its descibe the table;
 +-----------------+-------------+------+-----+---------+----------------+
 | Field           | Type        | Null | Key | Default | Extra          |
 +-----------------+-------------+------+-----+---------+----------------+
@@ -806,7 +810,19 @@ SELECT * FROM courses WHERE course_name LIKE "J_v_ %";
 SELECT * FROM courses WHERE course_name LIKE "J_v %";
 Empty set (0.00 sec)
 
-/-------------Aggregate Function ---------------/
+
+SELECT * FROM marks WHERE course_name LIKE "C_____e_ %"; // we can also use underscore more than once
++----+------------------------------+-------+-----+
+| id | course_name                  | score | sid |
++----+------------------------------+-------+-----+
+| 12 | Computer Networks            |     2 |  34 |
+| 18 | Computer Vision Using Python |    72 |  47 |
+| 19 | Computer Vision Using Python |    58 |  24 |
++----+------------------------------+-------+-----+
+3 rows in set (0.00 sec)
+
+
+/*-------------Aggregate Function ---------------*/
 
 SELECT * FROM marks;
 +----+-------------------------------+-------+-----+
@@ -880,7 +896,7 @@ SELECT AVG(score) FROM marks;
 +------------+
 1 row in set (0.00 sec)
 
-/--- subquery with aggregate function ---/
+/*--- subquery with aggregate function ---*/
 SELECT * FROM marks WHERE score = (SELECT MIN(score) FROM marks);
 +----+-------------------+-------+-----+
 | id | course_name       | score | sid |
@@ -942,6 +958,7 @@ SELECT name,pincode, CONCAT(city,",",state) FROM students LIMIT 10;
 +------------------+---------+------------------------+
 10 rows in set (0.00 sec)
 
+-- CREATING ALIASES AS KEYWORD 
 select fees AS charges from courses;
 +---------+
 | charges |
@@ -987,6 +1004,8 @@ select count(fees) AS CountOfFees from courses;
 +-------------+
 1 row in set (0.00 sec)
 
+
+-- fully qualified queries is basically usefull in JOIN OPERATIONS.
 SELECT courses.course_name, courses.fees From courses; //also known as fully qualified queries.
 +-------------------------------+-------+
 | course_name                   | fees  |
@@ -1061,7 +1080,70 @@ SELECT c.course_name, c.fees FROM courses AS c;
 +-------------------------------+-------+
 30 rows in set (0.00 sec)
 
-/------------ Look for update operations -------------/
+SELECT m.id AS MYID , m.sid AS MYSID FROM marks m;
++------+-------+
+| MYID | MYSID |
++------+-------+
+|    1 |    38 |
+|    2 |    51 |
+|    3 |    29 |
+|    4 |    13 |
+|    5 |    34 |
+|    6 |    36 |
+|    7 |    39 |
+|    8 |    37 |
+|    9 |    32 |
+|   10 |    12 |
+|   11 |    27 |
+|   12 |    34 |
+|   13 |     1 |
+|   14 |     3 |
+|   15 |    27 |
+|   16 |     6 |
+|   17 |     6 |
+|   18 |    47 |
+|   19 |    24 |
+|   20 |    14 |
+|   21 |    18 |
+|   22 |    32 |
+|   23 |    25 |
+|   24 |    10 |
+|   25 |    60 |
++------+-------+
+25 rows in set (0.00 sec)
+
+SELECT m.id AS MYID , m.sid AS MYSID FROM marks AS m;
++------+-------+
+| MYID | MYSID |
++------+-------+
+|    1 |    38 |
+|    2 |    51 |
+|    3 |    29 |
+|    4 |    13 |
+|    5 |    34 |
+|    6 |    36 |
+|    7 |    39 |
+|    8 |    37 |
+|    9 |    32 |
+|   10 |    12 |
+|   11 |    27 |
+|   12 |    34 |
+|   13 |     1 |
+|   14 |     3 |
+|   15 |    27 |
+|   16 |     6 |
+|   17 |     6 |
+|   18 |    47 |
+|   19 |    24 |
+|   20 |    14 |
+|   21 |    18 |
+|   22 |    32 |
+|   23 |    25 |
+|   24 |    10 |
+|   25 |    60 |
++------+-------+
+
+/*------------ Look for update operations -------------*/
 
 update marks SET score = 55 Where id = 9;
 Query OK, 1 row affected (0.01 sec)
@@ -1135,6 +1217,7 @@ select * from marks;
 +----+-------------------------------+-------+-----+
 25 rows in set (0.00 sec)
 
+-- for update multiple column value
 update marks AS c SET c.score = 55 , c.course_name = "Advance Data Structure" Where id = 9;
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -1171,8 +1254,38 @@ select * from marks;
 +----+-------------------------------+-------+-----+
 25 rows in set (0.00 sec)
 
+UPDATE marks SET course_name = "java from scarch" WHERE sid = 38;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | java from scarch              |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
 
-//By Normal Way
+-- By Normal Way
 SELECT students.id, marks.sid, students.name, marks.course_name, marks.score FROM marks, students 
 WHERE students.id = marks.sid;
 +----+-----+------------------+-------------------------------+-------+

@@ -1,7 +1,6 @@
 FOR DATABASE CREATION
 CREATE DATABASE xyz;
 
-
 SHOW DATABASES;
 +--------------------+
 | Database           |
@@ -524,7 +523,9 @@ SELECT * FROM courses;
 +----+-------------------------------+-----------------+-------+
 30 rows in set (0.01 sec)
 
-SELECT * FROM courses where fees BETWEEN 5000 AND 15000;
+// use BETWEEN when you want to retrive data in range
+// you can also write query SELECT * FROM courses WHERE fees > 5000 AND fees < 15000;
+SELECT * FROM courses where fees BETWEEN 5000 AND 15000; 
 +----+-----------------------------+-----------------+-------+
 | id | course_name                 | instructor_name | fees  |
 +----+-----------------------------+-----------------+-------+

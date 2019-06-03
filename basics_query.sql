@@ -1671,7 +1671,8 @@ SELECT courses.id, marks.sid, courses.course_name, marks.course_name, marks.scor
 +------+-----+-------------------------------+-------------------------------+-------+
 25 rows in set (0.00 sec)
 
-//GROUP BY
+/*------------ GROUP BY ------------*/
+
 SELECT * FROM students GROUP BY state;
 +----+-----------------+----------+-------+---------+
 | id | name            | city     | state | pincode |
@@ -1691,6 +1692,8 @@ SELECT * FROM students GROUP BY state;
 +----+-----------------+----------+-------+---------+
 12 rows in set (0.00 sec)
 
+-- it is basically noramlly used with aggregate function
+-- it is used to find no of user from group
 SELECT state,COUNT(state) AS NoOfStudents FROM students GROUP BY state;
 +-------+--------------+
 | state | NoOfStudents |
@@ -1710,7 +1713,7 @@ SELECT state,COUNT(state) AS NoOfStudents FROM students GROUP BY state;
 +-------+--------------+
 12 rows in set (0.00 sec)
 
-"HAVING CLAUSE NOTE:- you can't use where clause with group by so having is used."
+-- "HAVING CLAUSE NOTE:- you can't use where clause with group by so having is used."
 SELECT state,COUNT(state) AS NoOfStudents FROM students GROUP BY state HAVING count(state) > 5;
 +-------+--------------+
 | state | NoOfStudents |
@@ -1721,7 +1724,7 @@ SELECT state,COUNT(state) AS NoOfStudents FROM students GROUP BY state HAVING co
 +-------+--------------+
 3 rows in set (0.00 sec)
 
-//Create a VIEW
+/* ---------------------- CREATE A VIEW ---------------------- */
 CREATE VIEW StudCourse AS SELECT course_name,instructor_name,fees FROM courses ASEC WHERE fees >= 5000 LIMIT 5;
 Query OK, 0 rows affected (0.01 sec)
 

@@ -59,6 +59,9 @@ create procedure foobar()
 begin select * from marks; end//
 Query OK, 0 rows affected (0.00 sec)
 
+
+delimiter ;
+
 # Set the delimiter back and look at the procedure:
 SHOW PROCEDURE status;
 +-------------+--------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
@@ -68,4 +71,72 @@ SHOW PROCEDURE status;
 +-------------+--------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
 1 row in set (0.00 sec)
 
-# EXECUTE IT BY CALL
+# Another Way
+
+select * from employee;
++--------+----------+---------+--------+
+| emp_id | emp_name | dept_id | salary |
++--------+----------+---------+--------+
+|    103 | Jack     |       1 |   1400 |
+|    104 | John     |       2 |   1450 |
+|    108 | Alan     |       3 |   1150 |
+|    107 | Ram      |    NULL |    600 |
++--------+----------+---------+--------+
+4 rows in set (0.22 sec)
+
+
+mysql> DELIMITER //
+mysql> create procedure usp_totalEmployeeByDeparment(IN id INT)
+    -> begin
+    -> select count(*) as total from employee where dept_id = id;
+    -> end//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELIMITER ;
+
+mysql> call usp_totalEmployeeByDeparment(2);
++-------+
+| total |
++-------+
+|     1 |
++-------+
+1 row in set (0.06 sec)
+
+
+
+# Creating and Calling MySQL stored procedure with IN and OUT parameters.
+
+mysql> DELIMITER //
+mysql> create procedure usp_GetEmployeeName(IN id INT, OUT name VARCHAR(20))
+    -> begin
+    -> select emp_name into name from employee where emp_id = id;
+    -> end//
+Query OK, 0 rows affected (0.52 sec)
+
+mysql> DELIMITER ;
+
+mysql> call usp_GetEmployeeName(103, @name);
+Query OK, 1 row affected (0.05 sec)
+
+
+mysql> select @name;
++-------+
+| @name |
++-------+
+| Jack  |
++-------+
+1 row in set (0.00 sec)
+
+# VIEW ALL PROCEDURE
+mysql> SHOW PROCEDURE STATUS;
+
+# DROP PROCEDURE
+mysql> DROP PROCEDURE usp_totalEmployeeByDeparment;
+
+mysql> DROP PROCEDURE IF EXISTS usp_totalEmployeeByDeparment;
+
+
+
+
+
+

@@ -1,0 +1,108 @@
+# INDEX Statement
+# CREATE INDEX Statement
+The CREATE INDEX statement is used to create indexes in tables.
+Indexes are used to retrieve data from the database very fast. 
+The users cannot see the indexes, they are just used to speed up searches/queries.
+
+CREATE INDEX Syntax
+Creates an index on a table. Duplicate values are allowed:
+CREATE INDEX index_name
+ON table_name (column1, column2, ...); 
+
+CREATE UNIQUE INDEX Syntax
+Creates a unique index on a table. Duplicate values are not allowed:
+CREATE UNIQUE INDEX index_name
+ON table_name (column1, column2, ...);
+Note: The syntax for creating indexes varies among different databases. 
+Therefore: Check the syntax for creating indexes in your database.
+
+CREATE INDEX Example
+The SQL statement below creates an index named "idx_lastname" on the "LastName" column in the "Persons" table:
+CREATE INDEX idx_lastname
+ON Persons (LastName); 
+
+If you want to create an index on a combination of columns, you can list the column names within the parentheses, separated by commas:
+CREATE INDEX idx_pname
+ON Persons (LastName, FirstName); 
+
+# DROP INDEX Statement
+The DROP INDEX statement is used to delete an index in a table.
+
+The DROP INDEX statement is used to delete an index in a table.
+MS Access:
+DROP INDEX index_name ON table_name; 
+
+SQL Server:
+DROP INDEX table_name.index_name; 
+
+DB2/Oracle:
+DROP INDEX index_name; 
+
+MySQL:
+ALTER TABLE table_name
+DROP INDEX index_name; 
+
+# Example
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.01 sec)
+
+-- CREATE INDEX Example
+CREATE INDEX idx_score ON marks(score);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+-- View INDEX Example
+SHOW INDEX FROM marks;
++-------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table | Non_unique | Key_name  | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| marks |          0 | PRIMARY   |            1 | id          | A         |          25 |     NULL | NULL   |      | BTREE      |         |               |
+| marks |          1 | idx_score |            1 | score       | A         |          25 |     NULL | NULL   |      | BTREE      |         |               |
++-------+------------+-----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.00 sec)
+
+-- DROP INDEX Example
+DROP INDEX idx_score ON marks;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0 
+
+-- AFTER THAT IT only shows primary key index
+-- AND primary key implicitly contain indexes
+SHOW INDEX FROM marks;
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| marks |          0 | PRIMARY  |            1 | id          | A         |          25 |     NULL | NULL   |      | BTREE      |         |               |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+

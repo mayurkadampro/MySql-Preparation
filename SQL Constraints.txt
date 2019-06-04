@@ -1,0 +1,125 @@
+# SQL Constraints
+
+SQL Constraints are rules used to limit the type of data that can go into a table, 
+to maintain the accuracy and integrity of the data inside table.
+
+# Constraints can be divided into the following two types,
+-- Column level constraints: Limits only column data.
+-- Table level constraints: Limits whole table data.
+
+# Following are the most used constraints that can be applied to a table.
+-- NOT NULL
+-- UNIQUE
+-- PRIMARY KEY
+-- FOREIGN KEY
+-- CHECK
+-- DEFAULT
+
+# NOT NULL Constraint
+NOT NULL constraint restricts a column from having a NULL value. 
+Once NOT NULL constraint is applied to a column, 
+you cannot pass a null value to that column. It enforces a column to contain a proper value.
+One important point to note about this constraint is that it cannot be defined at table level.
+
+Example using NOT NULL constraint
+CREATE TABLE Student(s_id int NOT NULL, Name varchar(60), Age int);
+
+# UNIQUE Constraint
+UNIQUE constraint ensures that a field or column will only have unique values. A UNIQUE constraint field will not have duplicate data. 
+This constraint can be applied at column level or table level.
+
+Using UNIQUE constraint when creating a Table (Table Level)
+Here we have a simple CREATE query to create a table, which will have a column s_id with unique values.
+CREATE TABLE Student(s_id int NOT NULL UNIQUE, Name varchar(60), Age int);
+The above query will declare that the s_id field of Student table will only have unique values and wont take NULL value.
+
+Using UNIQUE constraint after Table is created (Column Level)
+ALTER TABLE Student ADD UNIQUE(s_id);
+The above query specifies that s_id field of Student table will only have unique value.
+
+# Primary Key Constraint
+Primary key constraint uniquely identifies each record in a database. A Primary Key must contain unique value and it must not contain null value. 
+Usually Primary Key is used to index the data inside the table.
+
+Using PRIMARY KEY constraint at Table Level
+CREATE table Student (s_id int PRIMARY KEY, Name varchar(60) NOT NULL, Age int);
+The above command will creates a PRIMARY KEY on the s_id.
+
+Using PRIMARY KEY constraint at Column Level
+ALTER table Student ADD PRIMARY KEY (s_id);
+The above command will creates a PRIMARY KEY on the s_id.
+
+# Foreign Key Constraint
+FOREIGN KEY is used to relate two tables. 
+FOREIGN KEY constraint is also used to restrict actions that would destroy links between tables. 
+
+Using FOREIGN KEY constraint at Table Level
+CREATE table Order_Detail(
+    order_id int PRIMARY KEY, 
+    order_name varchar(60) NOT NULL,
+    c_id int FOREIGN KEY REFERENCES Customer_Detail(c_id)
+);
+In this query, c_id in table Order_Detail is made as foriegn key, which is a reference of c_id column in Customer_Detail table.
+
+
+Using FOREIGN KEY constraint at Column Level
+ALTER table Order_Detail ADD FOREIGN KEY (c_id) REFERENCES Customer_Detail(c_id);
+
+
+# CHECK Constraint
+CHECK constraint is used to restrict the value of a column between a range. It performs check on the values, before storing them into the database. Its like condition checking before saving data into a column.
+
+Using CHECK constraint at Table Level
+CREATE table Student(
+    s_id int NOT NULL CHECK(s_id > 0),
+    Name varchar(60) NOT NULL,
+    Age int
+);
+The above query will restrict the s_id value to be greater than zero.
+
+Using CHECK constraint at Column Level
+ALTER table Student ADD CHECK(s_id > 0);
+
+
+# DEFAULT Constraint
+The DEFAULT constraint is used to provide a default value for a column.
+The default value will be added to all new records IF no other value is specified.
+
+SQL DEFAULT on CREATE TABLE
+The following SQL sets a DEFAULT value for the "City" column when the "Persons" table is created:
+My SQL / SQL Server / Oracle / MS Access:
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Sandnes'
+); 
+
+The DEFAULT constraint can also be used to insert system values, by using functions like GETDATE():
+CREATE TABLE Orders (
+    ID int NOT NULL,
+    OrderNumber int NOT NULL,
+    OrderDate date DEFAULT GETDATE()
+);
+
+SQL DEFAULT on ALTER TABLE
+To create a DEFAULT constraint on the "City" column when the table is already created, use the following SQL:
+MySQL:
+ALTER TABLE Persons
+ALTER City SET DEFAULT 'Sandnes';
+
+DROP a DEFAULT Constraint
+To drop a DEFAULT constraint, use the following SQL:
+MySQL:
+ALTER TABLE Persons
+ALTER City DROP DEFAULT; 
+
+
+
+
+
+
+
+
+

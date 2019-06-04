@@ -1,0 +1,71 @@
+# SQL Stored Procedures
+
+A stored procedure is a prepared SQL code that you can save, 
+so the code can be reused over and over again.
+
+So if you have an SQL query that you write over and over again, 
+save it as a stored procedure, 
+and then just call it to execute it.
+
+You can also pass parameters to a stored procedure, 
+so that the stored procedure can act based on the parameter value(s) that is passed.
+
+-- Stored Procedure Syntax
+delimiter //
+CREATE PROCEDURE procedure_name()
+BEGIN sql_statement; END// 
+
+-- Execute a Stored Procedure
+EXEC procedure_name;
+
+# Demo Database
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
+
+
+# Create Store Procedure
+delimiter //
+create procedure foobar()
+begin select * from marks; end//
+Query OK, 0 rows affected (0.00 sec)
+
+# Set the delimiter back and look at the procedure:
+SHOW PROCEDURE status;
++-------------+--------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| Db          | Name   | Type      | Definer        | Modified            | Created             | Security_type | Comment | character_set_client | collation_connection | Database Collation |
++-------------+--------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+| gangulytech | foobar | PROCEDURE | root@localhost | 2019-06-04 11:53:46 | 2019-06-04 11:53:46 | DEFINER       |         | cp850                | cp850_general_ci     | latin1_swedish_ci  |
++-------------+--------+-----------+----------------+---------------------+---------------------+---------------+---------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+# EXECUTE IT BY CALL

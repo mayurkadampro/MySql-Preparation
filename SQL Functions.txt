@@ -1,0 +1,188 @@
+# SQL Functions?
+SQL provides many built-in functions to perform operations on data. These functions are useful while performing mathematical calculations, string concatenations, sub-strings etc. SQL functions are divided into two categories,
+Aggregate Functions
+Scalar Functions
+
+# Aggregate Functions
+These functions return a single value after performing calculations on a group of values. 
+Following are some of the frequently used Aggregrate functions.
+
+# AVG() Function
+Average returns average value after calculating it from values in a numeric column.
+Its general syntax is,
+SELECT AVG(column_name) FROM table_name
+SELECT avg(salary) from Emp;
+
+# COUNT() Function
+Count returns the number of rows present in the table either based on some condition or without condition.
+Its general syntax is,
+SELECT COUNT(column_name) FROM table-name
+SELECT COUNT(DISTINCT salary) FROM emp;
+
+# FIRST() Function
+First function returns first value of a selected column
+Syntax for FIRST function is,
+SELECT FIRST(column_name) FROM table-name;
+SELECT FIRST(salary) FROM Emp;
+
+# LAST() Function
+LAST function returns the return last value of the selected column.
+Syntax of LAST function is,
+SELECT LAST(column_name) FROM table-name;
+SELECT LAST(salary) FROM emp;
+
+# MAX() Function
+MAX function returns maximum value from selected column of the table.
+Syntax of MAX function is,
+SELECT MAX(column_name) from table-name;
+SELECT MAX(salary) FROM emp;
+
+
+# MIN() Function
+MIN function returns minimum value from a selected column of the table.
+Syntax for MIN function is,
+SELECT MIN(column_name) from table-name;
+SELECT MIN(salary) FROM emp;
+
+# SUM() Function
+SUM function returns total sum of a selected columns numeric values. 
+Syntax for SUM is,
+SELECT SUM(column_name) from table-name;
+SQL query to find sum of salaries will be,
+SELECT SUM(salary) FROM emp;
+
+# Scalar Functions
+Scalar functions return a single value from an input value. 
+Following are some frequently used Scalar Functions in SQL.
+
+SELECT * FROM marks LIMIT 5;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
++----+-------------------------------+-------+-----+
+5 rows in set (0.00 sec)
+
+# UCASE() Function
+UCASE function is used to convert value of string column to Uppercase characters.
+Syntax of UCASE,
+SELECT UCASE(column_name) from table-name;
+SQL query for using UCASE is,
+
+SELECT UCASE(course_name) FROM marks LIMIT 5;
++-------------------------------+
+| UCASE(course_name)            |
++-------------------------------+
+| AI IN REAL WORLD USING PYTHON |
+| AI IN REAL WORLD USING PYTHON |
+| GIMP PHOTO EDITING            |
+| SQLITE TUTORIAL               |
+| SWING GUI IN DEPTH            |
++-------------------------------+
+5 rows in set (0.00 sec)
+
+# LCASE() Function
+LCASE function is used to convert value of string columns to Lowecase characters.
+Syntax for LCASE is,
+SELECT LCASE(column_name) FROM table-name;
+
+ SELECT LCASE(course_name) FROM marks LIMIT 5;
++-------------------------------+
+| LCASE(course_name)            |
++-------------------------------+
+| ai in real world using python |
+| ai in real world using python |
+| gimp photo editing            |
+| sqlite tutorial               |
+| swing gui in depth            |
++-------------------------------+
+5 rows in set (0.00 sec)
+
+# MID() Function
+MID function is used to extract substrings from column values of string type in a table.
+Syntax for MID function is,
+SELECT MID(column_name, start, length) from table-name;
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
+
+SELECT MID(course_name,2,2) FROM marks LIMIT 5;
++----------------------+
+| MID(course_name,2,2) |
++----------------------+
+| I                    |
+| I                    |
+| IM                   |
+| QL                   |
+| wi                   |
++----------------------+
+5 rows in set (0.00 sec)
+
+# ROUND() Function
+ROUND function is used to round a numeric field to number of nearest integer. It is used on Decimal point values.
+Syntax of Round function is,
+SELECT ROUND(column_name, decimals) from table-name;
+
+SELECT salary from emp;
+salary
+9000.67
+8000.98
+6000.45
+10000
+8000.01
+
+SELECT ROUND(salary) from emp;
+ROUND(salary)
+9001
+8001
+6000
+10000
+8000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

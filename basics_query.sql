@@ -92,6 +92,11 @@ Query OK, 0 rows affected (0.01 sec)
 DROP DATABASE xyz;
 Query OK, 0 rows affected (0.00 sec)
 
+-- another way to DROP THE Table if its exists
+DROP TABLE IF EXISTS marks;
+
+-- similarely
+DROP DATABASE IF EXISTS gangulytech;
 
 /*---------------------------- gangulytech.sql --------------------------------*/
 

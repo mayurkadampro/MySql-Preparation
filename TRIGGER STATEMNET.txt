@@ -1,0 +1,331 @@
+# TRIGGER STATEMNET
+
+A mysql trigger is a set of SQL statemnets stored in the database.
+A mysql trigger is special type of stored procedure.
+A mysql trigger is execuated or fired whenever an event associated with a table occus
+example insert, update or delete.
+it is special because it is not called manually like procedure it called automatically.
+whenever associated event are occured.
+
+Syntax:
+
+create trigger [trigger_name]
+[before | after]  
+{insert | update | delete}  
+on [table_name]  
+[for each row]  
+[trigger_body]
+
+Explanation of syntax:
+create trigger [trigger_name]: Creates or replaces an existing trigger with the trigger_name. 
+[before | after]: This specifies when the trigger will be executed.
+
+{insert | update | delete}: This specifies the DML operation.
+ 
+on [table_name]: This specifies the name of the table associated with the trigger.
+
+[for each row]: This specifies a row-level trigger, i.e., the trigger will be executed for each row being affected.
+
+[trigger_body]: This provides the operation to be performed as trigger is fired.
+
+Example:
+
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
+
+DELIMITER //
+CREATE TRIGGER Stud_marks
+BEFORE
+INSERT ON marks
+FOR EACH ROW IF NEW.score < 10 THEN SET NEW.score = 5;
+END IF;//
+Query OK, 0 rows affected (0.01 sec)
+
+
+DELIMITER ;
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
++----+-------------------------------+-------+-----+
+25 rows in set (0.00 sec)
+
+INSERT INTO marks VALUES(26,"HIBERNATE",9,11);
+Query OK, 1 row affected (0.01 sec)
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
+| 26 | HIBERNATE                     |     5 |  11 |
++----+-------------------------------+-------+-----+
+26 rows in set (0.00 sec)
+
+/*----------------- Another One Example -------------*/ 
+
+SELECT * FROM courses;
++----+-------------------------------+-----------------+-------+
+| id | course_name                   | instructor_name | fees  |
++----+-------------------------------+-----------------+-------+
+|  1 | MySQL Database                | Sandeep Ganguly |  4500 |
+|  2 | PHP Development               | Dolly Singh     |  1500 |
+|  3 | Java Complete Tutorial        | Ramesh Yadav    |  7500 |
+|  4 | Swing GUI In Depth            | Guddu Sharma    | 15000 |
+|  5 | Computer Vision Using Python  | Narendra Murthy | 25000 |
+|  6 | AI In Real World Using Python | Satya Kundu     | 45000 |
+|  7 | 2D Games Using PyGame         | Sandeep Ganguly | 18000 |
+|  8 | GIMP Photo Editing            | Rachna Mishra   |  5000 |
+|  9 | HTML                          | Chatur Singh    |  1000 |
+| 10 | CSS3                          | pinky singh     |  1500 |
+| 11 | Amazon Cloud AWS              | Ruchi Singhania | 75000 |
+| 12 | Hadoop Big Data               | Ankita Ganguly  | 95000 |
+| 13 | Natural Language Processing   | Sandeep Ganguly | 45999 |
+| 14 | The C Ninja                   | Pradeep Gurung  |  3599 |
+| 15 | Java Database Connectivity    | Ratan Tata      |  6599 |
+| 16 | Dynamic Website Development   | Girish Patel    |  8599 |
+| 17 | Android App Development       | Rishi Khanna    | 17999 |
+| 18 | IOS Developer                 | Umesh Verma     | 25000 |
+| 19 | Algorithms In Depth           | Arjun Thapa     |  9999 |
+| 20 | Data Structure In Depth       | Ashok Kalia     | 15000 |
+| 21 | JQuery Ninja                  | James Guido     |  6500 |
+| 22 | Twitter Bootstrap             | Mitali Ghosh    | 14999 |
+| 23 | Codeigniter                   | Pawan Kumar     |  7599 |
+| 24 | Struts Framework              | Umesh Verma     |  7500 |
+| 25 | CakePHP                       | Parvez Khan     | 60000 |
+| 26 | Machine Learning              | Faisal Qureshi  | 45000 |
+| 27 | Computer Networks             | Saleem Khan     | 12599 |
+| 28 | C++ STL Library Tutorial      | Kareem Sheikh   | 25000 |
+| 29 | Kali Linux                    | Jitan Majhi     |  4500 |
+| 30 | SQLite Tutorial               | Nitish Kumar    |  6500 |
++----+-------------------------------+-----------------+-------+
+30 rows in set (0.00 sec)
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
+| 26 | HIBERNATE                     |     5 |  11 |
++----+-------------------------------+-------+-----+
+26 rows in set (0.00 sec)
+
+DILIMITER //
+CREATE TRIGGER Stud_Count
+AFTER
+INSERT
+ON marks
+FOR EACH ROW
+BEGIN
+INSERT INTO courses VALUES(31,'Hibernate','Mayur Kadam',1000000);
+END //
+Query OK, 0 rows affected (0.01 sec)
+
+DELIMITER ;
+
+INSERT INTO marks VALUES(27,"SPRING",9,12);
+Query OK, 1 row affected (0.00 sec)
+
+SELECT * FROM marks;
++----+-------------------------------+-------+-----+
+| id | course_name                   | score | sid |
++----+-------------------------------+-------+-----+
+|  1 | AI In Real World Using Python |    14 |  38 |
+|  2 | AI In Real World Using Python |    99 |  51 |
+|  3 | GIMP Photo Editing            |    51 |  29 |
+|  4 | SQLite Tutorial               |    57 |  13 |
+|  5 | Swing GUI In Depth            |    31 |  34 |
+|  6 | CSS3                          |    83 |  36 |
+|  7 | Codeigniter                   |    22 |  39 |
+|  8 | 2D Games Using PyGame         |    60 |  37 |
+|  9 | Data Structure In Depth       |    31 |  32 |
+| 10 | Amazon Cloud AWS              |    76 |  12 |
+| 11 | Amazon Cloud AWS              |    86 |  27 |
+| 12 | Computer Networks             |     2 |  34 |
+| 13 | Swing GUI In Depth            |    52 |   1 |
+| 14 | Dynamic Website Development   |    52 |   3 |
+| 15 | CakePHP                       |     2 |  27 |
+| 16 | Natural Language Processing   |    55 |   6 |
+| 17 | HTML                          |    68 |   6 |
+| 18 | Computer Vision Using Python  |    72 |  47 |
+| 19 | Computer Vision Using Python  |    58 |  24 |
+| 20 | Data Structure In Depth       |    70 |  14 |
+| 21 | Kali Linux                    |    76 |  18 |
+| 22 | Java Complete Tutorial        |    67 |  32 |
+| 23 | Java Database Connectivity    |     8 |  25 |
+| 24 | The C Ninja                   |    39 |  10 |
+| 25 | SQLite Tutorial               |    69 |  60 |
+| 26 | HIBERNATE                     |     5 |  11 |
+| 27 | SPRING                        |     5 |  12 |
++----+-------------------------------+-------+-----+
+27 rows in set (0.00 sec)
+
+// course table is automatically get updated 
+
+SELECT * FROM courses;
++----+-------------------------------+-----------------+---------+
+| id | course_name                   | instructor_name | fees    |
++----+-------------------------------+-----------------+---------+
+|  1 | MySQL Database                | Sandeep Ganguly |    4500 |
+|  2 | PHP Development               | Dolly Singh     |    1500 |
+|  3 | Java Complete Tutorial        | Ramesh Yadav    |    7500 |
+|  4 | Swing GUI In Depth            | Guddu Sharma    |   15000 |
+|  5 | Computer Vision Using Python  | Narendra Murthy |   25000 |
+|  6 | AI In Real World Using Python | Satya Kundu     |   45000 |
+|  7 | 2D Games Using PyGame         | Sandeep Ganguly |   18000 |
+|  8 | GIMP Photo Editing            | Rachna Mishra   |    5000 |
+|  9 | HTML                          | Chatur Singh    |    1000 |
+| 10 | CSS3                          | pinky singh     |    1500 |
+| 11 | Amazon Cloud AWS              | Ruchi Singhania |   75000 |
+| 12 | Hadoop Big Data               | Ankita Ganguly  |   95000 |
+| 13 | Natural Language Processing   | Sandeep Ganguly |   45999 |
+| 14 | The C Ninja                   | Pradeep Gurung  |    3599 |
+| 15 | Java Database Connectivity    | Ratan Tata      |    6599 |
+| 16 | Dynamic Website Development   | Girish Patel    |    8599 |
+| 17 | Android App Development       | Rishi Khanna    |   17999 |
+| 18 | IOS Developer                 | Umesh Verma     |   25000 |
+| 19 | Algorithms In Depth           | Arjun Thapa     |    9999 |
+| 20 | Data Structure In Depth       | Ashok Kalia     |   15000 |
+| 21 | JQuery Ninja                  | James Guido     |    6500 |
+| 22 | Twitter Bootstrap             | Mitali Ghosh    |   14999 |
+| 23 | Codeigniter                   | Pawan Kumar     |    7599 |
+| 24 | Struts Framework              | Umesh Verma     |    7500 |
+| 25 | CakePHP                       | Parvez Khan     |   60000 |
+| 26 | Machine Learning              | Faisal Qureshi  |   45000 |
+| 27 | Computer Networks             | Saleem Khan     |   12599 |
+| 28 | C++ STL Library Tutorial      | Kareem Sheikh   |   25000 |
+| 29 | Kali Linux                    | Jitan Majhi     |    4500 |
+| 30 | SQLite Tutorial               | Nitish Kumar    |    6500 |
+| 31 | Hibernate                     | Mayur Kadam     | 1000000 |
++----+-------------------------------+-----------------+---------+
+31 rows in set (0.00 sec)
+
+
+# list out trigger is system by
+
+SHOW TRIGGERS;
+
+DROP TRIGGER IF EXISTS Stud_Count;
+Query OK, 0 rows affected (0.01 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1785,3 +1785,15 @@ SELECT * FROM studcourse;
 | 2D Games Using PyGame         | Sandeep Ganguly | 18000 |
 +-------------------------------+-----------------+-------+
 5 rows in set (0.00 sec)
+
+
+/-----------------------------TRANSACTION-----------------------------/
+
+A Transaction is a sequence of one or more SQL statements that together form a logical unit of work
+Every statemnet that forms a transaction executes certain portions of an operation.
+All the statemnets must complete successfully to conclude the operation
+A Transaction must pass the ACID test
+If any of the tasks fail, the transaction fails. Therefore, a transaction has only two results: success or failure.
+
+
+
